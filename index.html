@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Store – Product Page</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #fff; color: #111; }
+.container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+header { text-align: center; padding: 20px 0; border-bottom: 1px solid #eee; }
+.logo { font-size: 28px; font-weight: 800; }
+.urgency { background: #fff3cd; text-align: center; padding: 12px; font-weight: 700; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 30px 0; }
+@media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+.gallery img { width: 100%; border-radius: 12px; }
+.thumbs { display: flex; gap: 8px; margin-top: 10px; }
+.thumbs img { width: 70px; height: 70px; object-fit: cover; border-radius: 8px; border: 2px solid transparent; cursor: pointer; }
+.thumbs img.active { border-color: #000; }
+.rating { color: #e67e22; font-weight: 600; margin-bottom: 8px; }
+h1 { font-size: 28px; margin-bottom: 12px; }
+.benefits { list-style: none; margin: 16px 0; }
+.benefits li { padding: 6px 0; }
+.option { border: 2px solid #ddd; border-radius: 10px; padding: 14px; margin-bottom: 10px; cursor: pointer; position: relative; }
+.option.selected { border-color: #28a745; background: #f8fff9; }
+.badge { position: absolute; top: -10px; right: 10px; background: #28a745; color: #fff; font-size: 11px; padding: 3px 8px; border-radius: 4px; }
+.price-big { font-size: 32px; font-weight: 800; color: #c0392b; }
+.compare { text-decoration: line-through; color: #999; margin-left: 8px; }
+.save { color: #28a745; font-weight: 700; margin-left: 8px; }
+.btn { width: 100%; background: #000; color: #fff; border: none; padding: 16px; font-size: 18px; font-weight: 700; border-radius: 8px; cursor: pointer; margin-top: 12px; }
+.btn:hover { background: #222; }
+.cart-msg { margin-top: 12px; padding: 12px; background: #e8f5e9; border-radius: 8px; display: none; }
+.section { margin: 40px 0; }
+.comparison { display: flex; gap: 16px; flex-wrap: wrap; }
+.comparison div { flex: 1; min-width: 200px; text-align: center; }
+.comparison img { width: 100%; border-radius: 10px; }
+.guarantee { background: #e8f5e9; padding: 24px; border-radius: 12px; text-align: center; }
+.faq details { border-bottom: 1px solid #eee; padding: 12px 0; }
+.faq summary { font-weight: 600; cursor: pointer; }
+</style>
+</head>
+<body>
+<header><div class="logo">YOUR BRAND</div></header>
+<div class="urgency">LAST 100 UNITS — FREE shipping ends soon</div>
+<div class="container">
+  <div class="grid">
+    <div>
+      <img id="mainImg" src="https://mininest.store/cdn/shop/files/bundle1.png?v=1789478833&width=1000" alt="Product">
+      <div class="thumbs">
+        <img src="https://mininest.store/cdn/shop/files/bundle1.png?v=1789478833&width=200" class="active" onclick="changeImg(this)">
+        <img src="https://mininest.store/cdn/shop/files/infografia2.png?v=1789486298&width=200" onclick="changeImg(this)">
+        <img src="https://mininest.store/cdn/shop/files/histories.png?v=1789486088&width=200" onclick="changeImg(this)">
+        <img src="https://mininest.store/cdn/shop/files/bundle2.png?v=1789478848&width=200" onclick="changeImg(this)">
+        <img src="https://mininest.store/cdn/shop/files/bundle3.png?v=1789478851&width=200" onclick="changeImg(this)">
+      </div>
+    </div>
+    <div>
+      <div class="rating">★ 4.89 / 5 from 2,856 happy customers</div>
+      <h1>Your Product Name</h1>
+      <ul class="benefits">
+        <li>⬆️ Quick ups & downs</li>
+        <li>💪 Less arm-only carrying</li>
+        <li>👜 Fits easily in your bag</li>
+        <li>🛒 Works with your stroller</li>
+        <li>⏱️ Made for short carries</li>
+      </ul>
+      <div id="options">
+        <div class="option selected" data-price="29.95" data-name="1x Everyday Pack" onclick="selectOption(this)">
+          <span class="badge">MOST POPULAR</span>
+          <strong>1x Everyday Pack</strong><br>
+          <span class="price-big">$29.95</span> <span class="compare">$159.95</span> <span class="save">SAVE 81%</span>
+        </div>
+        <div class="option" data-price="45.95" data-name="2x Duo Pack" onclick="selectOption(this)">
+          <strong>2x Duo Pack</strong><br>
+          <span class="price-big">$45.95</span> <span class="compare">$159.95</span>
+        </div>
+        <div class="option" data-price="55.95" data-name="3x Family Pack" onclick="selectOption(this)">
+          <span class="badge" style="background:#e67e22;">BEST VALUE</span>
+          <strong>3x Family Pack</strong><br>
+          <span class="price-big">$55.95</span> <span class="compare">$159.95</span>
+        </div>
+      </div>
+      <div style="background:#fff8e1; border:1px dashed #f39c12; padding:12px; border-radius:8px; margin:12px 0;">
+        <strong>TODAY'S GIFT</strong><br>Your Bonus Guide — <b>$0.00</b> <s>$19.95</s>
+      </div>
+      <p style="color:#c0392b; font-weight:700;">Only 17 left at this price.</p>
+      <button class="btn" onclick="addToCart()">ADD TO CART</button>
+      <div id="cartMsg" class="cart-msg"></div>
+    </div>
+  </div>
+  <div class="section">
+    <h2>Stop Turning Every Short Walk Into Arm Carrying</h2>
+    <p>Your product gives quick carry support for those in-between moments.</p>
+    <div class="comparison" style="margin-top:16px;">
+      <div><img src="https://mininest.store/cdn/shop/files/before.png?v=1789484660&width=600" alt="Before"><p><b>Arm Carrying</b></p></div>
+      <div><img src="https://mininest.store/cdn/shop/files/after.png?v=1789484711&width=600" alt="After"><p><b>Your Product</b></p></div>
+    </div>
+  </div>
+  <div class="guarantee">
+    <h2>30-Day Guarantee</h2>
+    <p>Try it. If it doesn’t fit your routine, return it within 30 days for a full refund.</p>
+  </div>
+  <div class="section faq">
+    <h2>FAQ</h2>
+    <details><summary>Why use this if I already have a stroller?</summary><p>For the awkward in-between moments.</p></details>
+    <details><summary>Is it hands-free?</summary><p>No hands-free claim is made.</p></details>
+    <details><summary>What age and weight?</summary><p>Follow the limits in the instructions.</p></details>
+  </div>
+</div>
+<script>
+function changeImg(el) {
+  document.getElementById('mainImg').src = el.src.replace('&width=200','&width=1000');
+  document.querySelectorAll('.thumbs img').forEach(i => i.classList.remove('active'));
+  el.classList.add('active');
+}
+function selectOption(el) {
+  document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+}
+function addToCart() {
+  const selected = document.querySelector('.option.selected');
+  const msg = document.getElementById('cartMsg');
+  msg.style.display = 'block';
+  msg.innerHTML = '<b>Added:</b> ' + selected.dataset.name + ' — $' + selected.dataset.price + '<br>(Demo — connect your real checkout)';
+}
+</script>
+</body>
+</html>
